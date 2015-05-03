@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html ng-app lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Angular JS Example</title>
+	<!-- Latest compiled and minified CSS & JS -->
+	<link rel="stylesheet" media="screen" href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	 
+</head>
+<body>
+<div class="container">
+		<h1>{{hello}}</h1>
+		<input type="text" ng-model="asdf">
+		
+		
+		<div class="dropdown">
+		  <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		    Dropdown trigger
+		    <span class="caret"></span>
+		  </button>
+		  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+		    <li>btn</li>
+		    <li>two</li>
+		    <li>Three</li>
+		  </ul>
+		</div>
+		<h2 ng-class="asdf">Text</h2>
+	</div>	<!-- Latest compiled and minified JS -->
+	<script src="//code.jquery.com/jquery.js"></script>
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-rc.1/angular.min.js"></script>
+</body>
+</html>
