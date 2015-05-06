@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="gemStore">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Angular Course</title>
+
+		<!-- Bootstrap CSS -->
+		<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	  <body class="container" ng-controller="StoreController as store">
+	  <h2>Products:</h2>
+    <div class="product row" ng-repeat="product in store.products | orderBy: 'name'">
+      <h3>
+        {{product.name}}
+
+        <em class="pull-right">{{product.price | currency : "£"}}</em>
+      </h3>
+      <div class="gallery" ng-show="product.images.length" ng-controller="GalleryController as gallery">
+	  		<div class="img-wrap">
+      		<img ng-src="{{product.images[gallery.current]}}">
+      	</div>
+      	<ul class="img-thumbnails clearfix">
+      		<li class="small-image pull-left thumbnail" ng-repeat="image in product.images">
+      			<img ng-src="{{image}}" ng-click="gallery.setCurrent(image)">
+      		</li>
+      	</ul>
+      </div>
+
+      <div class="tab" ng-controller="TabController as tab">
+      	<ul class="nav nav-pills">
+      		<li ng-class="{active : tab.isSet(1)">
+      		<a href ng-click="tab.setTab(1)">Description</a></li>
+      		<li ng-class="{active : tab.isSet(2)">
+      		<a href ng-click="tab.setTab(2)">Specs</a></li>
+      		<li ng-class="{active : tab.isSet(3)">
+      		<a href ng-click="tab.setTab(3)">Reviews</a></li>
+      	</ul>
+      	<p>{{tab}}</p>
+      	<div ng-show="tab.isSet(1)">
+      		<h4>Description</h4>
+      		<blockquote>{{product.description}}</blockquote>
+      	</div>
+      	<div ng-show="tab.isSet(2)">
+      		<h4>Specs</h4>
+      		<blockquote>Shine: {{product.shine}}</blockquote>
+      	</div>
+      	<div ng-show="tab.isSet(3)">
+      		<h4>Reviews</h4>
+      		<blockquote> {{product.reviews[0]}} </blockquote>
+      	</div>
+
+      </div>
+      <button ng-show="store.product.canPurchase" ng-hide="store.product.soldOut" class="pull-right">Add to Cart</button>
+    </div>  <!-- end of product row -->
+
+		<!-- jQuery -->
+		<script src="//code.jquery.com/jquery.js"></script>
+		<!-- Bootstrap JavaScript -->
+		<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+		<!-- Angular -->
+			<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.0-rc.1/angular.min.js"></script>
+			<script src="app.js"></script>
+	</body>
+</html>

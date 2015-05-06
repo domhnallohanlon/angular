@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Title Page</title>
+		<title>Angular Course</title>
 
 		<!-- Bootstrap CSS -->
 		<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
@@ -17,12 +17,13 @@
 		<![endif]-->
 	</head>
 	  <body class="container" ng-controller="StoreController as store">
-    <div class="product row">
+	  <h2>Products:</h2>
+    <div class="product row" ng-repeat="product in store.products">
       <h3>
-        {{store.product.name}}
-        <em class="pull-right">${{store.product.price}}</em>
+        {{product.name}}
+        <em class="pull-right">${{product.price}}</em>
       </h3>
-      <button ng-show="store.product.canPurchase" ng-hide="store.product.soldOut">Add to Cart</button>
+      <button ng-show="store.product.canPurchase" ng-hide="store.product.soldOut" class="pull-right">Add to Cart</button>
     </div>
 
 		<!-- jQuery -->
