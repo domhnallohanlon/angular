@@ -1,0 +1,16 @@
+.ng-invalid.ng-dirty{
+	border-color: red
+}
+
+.ng-valid.ng-dirty{
+	border-color: green
+}
+
+.nav-pills li a{
+	color: #ac005f!important
+}
+
+.nav-pills li .active a{
+	background-color: #ac005f!important;
+	color: #fff;
+}

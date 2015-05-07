@@ -9,6 +9,8 @@
 		<!-- Bootstrap CSS -->
 		<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="application.css">
+
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 		<!--[if lt IE 9]>
@@ -44,7 +46,7 @@
       		<li ng-class="{active : tab.isSet(3)">
       		<a href ng-click="tab.setTab(3)">Reviews</a></li>
       	</ul>
-      	<p>{{tab}}</p>
+<!--       	<p>{{tab}}</p> -->
       	<div ng-show="tab.isSet(1)">
       		<h4>Description</h4>
       		<blockquote>{{product.description}}</blockquote>
@@ -55,27 +57,36 @@
       	</div>
       	<div ng-show="tab.isSet(3)">
       		<h4>Reviews</h4>
- <!--  Review Form -->
-            <form name="reviewForm">
-              <!--  Live Preview -->
+          <ul>
+            <li ng-repeat="review in product.reviews">
               <blockquote>
                 <strong>{{review.stars}} Stars</strong>
                 {{review.body}}
-                <cite class="clearfix">—{{reivew.author}}</cite>
+                <cite>{{review.author}} on {{review.createdOn | date}}</cite>
+              </blockquote>
+            </li>
+          </ul>
+ <!--  Review Form -->
+            <form name="reviewForm" ng-controller="ReviewController as reviewCtrl" ng-submit="reviewCtrl.addReview(product) && reviewForm.$valid" novalidate>
+              <!--  Live Preview -->
+              <blockquote>
+                <strong>{{reviewCtrl.review.stars}} Stars</strong>
+                {{reviewCtrl.review.body}}
+                <cite class="clearfix">—{{reviewCtrl.reivew.author}}</cite>
               </blockquote>
 
               <!--  Review Form -->
               <h4>Submit a Review</h4>
               <fieldset class="form-group">
-                <select class="form-control" ng-model="review.stars" ng-options="stars for stars in [5,4,3,2,1]"  title="Stars">
+                <select class="form-control" ng-model="reviewCtrl.review.stars" ng-options="stars for stars in [5,4,3,2,1]"  title="Stars" required>
                   <option value="">Rate the Product</option>
                 </select>
               </fieldset>
               <fieldset class="form-group">
-                <textarea class="form-control" ng-model="review.body" placeholder="Write a short review of the product..." title="Review"></textarea>
+                <textarea class="form-control" ng-model="reviewCtrl.review.body" placeholder="Write a short review of the product..." title="Review"></textarea>
               </fieldset>
               <fieldset class="form-group">
-                <input type="email" class="form-control" ng-model="review.author"placeholder="jimmyDean@example.org" title="Email" />
+                <input type="email" class="form-control" ng-model="reviewCtrl.review.author"placeholder="jimmyDean@example.org" title="Email" required/>
               </fieldset>
               <fieldset class="form-group">
                 <input type="submit" class="btn btn-primary pull-right" value="Submit Review" />
