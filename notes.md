@@ -8,7 +8,9 @@ a simple, responsive app using angular and bootstrap.
 
 Directive are angular-specific attributes which are added to HTML tags to run or reference some JavaScript code.
 
-A directive typically starts with the prefix `ng-`
+Angular directives allow you to write HTML that more clearly expresses the intent of your app.
+
+A directive typically starts with the prefix `ng-` although it is possible to create your own custom directives too.    
 
 ### More directives
 
